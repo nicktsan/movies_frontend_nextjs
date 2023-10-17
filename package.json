@@ -9,11 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-amplify/ui-react": "^5.3.1",
+    "aws-amplify": "^5.3.11",
+    "aws-crt": "^1.18.0",
     "axios": "^1.5.1",
+    "encoding": "^0.1.13",
     "next": "13.5.4",
+    "next-auth": "^4.23.2",
     "react": "^18",
-    "react-dom": "^18",
-    "swr": "^2.2.4"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "@types/node": "^20",

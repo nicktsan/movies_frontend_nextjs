@@ -1,6 +1,6 @@
+'use client'
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import useSWR from "swr";
 import data from '../inputdata/inputdata.json'
 
 export interface MovieRecord {
@@ -13,7 +13,7 @@ function SearchMovies() {
     const { URL } = data
     const [movieSearch, setMovieSearch] = useState("");
     const [movie, setMovie] = useState([])
-    const fetcher = (url: string) => axios.get(url).then((res) => res.data);
+    //const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
         setMovieSearch(event.target.value);
@@ -25,18 +25,6 @@ function SearchMovies() {
         //if (movieSearch.trim() !== "") {
         console.log("movieSearch from handleSubmit: " + movieSearch)
         const url = URL + "titles/" + movieSearch
-
-        //const { data, error, isLoading } = useSWR(url, fetcher)
-        // useEffect(() => {
-        //     axios.get(url).then(function (response) {
-        //         setMovie(movie => movie = response.data);
-        //         console.log(movie)
-        //     }).catch(function (error) {
-        //         console.log(error);
-        //     });
-        // }, [movie])
-        // console.log(data)
-        //setMovie(movie => movie = data);
         console.log("url:")
         console.log(url)
         axios.get(url)
