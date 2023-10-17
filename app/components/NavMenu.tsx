@@ -6,7 +6,7 @@ function AuthButton() {
     const { data: session } = useSession();
     //if there is a session, there is an option to sign out of the current session
     if (session) {
-        console.log(session)
+        // console.log(session)
         return (
             <>
                 Signed in as {session?.user?.email} <br />

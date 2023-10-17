@@ -1,12 +1,17 @@
+import { getServerSession } from 'next-auth/next';
 import { SearchMovies } from './components/searchMovies';
-//import React from 'react'
-//import { useSession, signIn, signOut } from "next-auth/react"
 
-export default function Home() {
+export default async function Home() {
+  //const session = await getServerSession();
   return (
-    <div>
-      Home
+    <>
+      {/* getServerSession Result
+      {session?.user?.email ? (
+        <div>{session?.user?.email}</div>
+      ) : (
+        <div>Not loggined in</div>
+      )} */}
       <SearchMovies />
-    </div>
+    </>
   )
 } 

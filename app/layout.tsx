@@ -1,9 +1,6 @@
-//'use client'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-//import React from 'react'
-import type { AppProps } from 'next/app'
 //we want to import SessionProvider as a client component so we can use it as a 
 //wrapper around the layout's children components
 import SessionProvider from './components/SessionProvider'
@@ -22,17 +19,11 @@ export const metadata: Metadata = {
 }
 
 export default async function RootLayout(
-  // { Component, pageProps }: AppProps
-  // {
-  //   Component,
-  //   pageProps: { session, ...pageProps },
-  // }: AppProps
   { children, }: { children: React.ReactNode }
 ) {
   const session = await getServerSession();
   //SessionProvider is imported from the components folder as a client component to wrap children components
   return (
-    // <Authenticator.Provider>
     <html lang="en">
       <body className={inter.className}>
         <SessionProvider session={session}>
@@ -43,9 +34,5 @@ export default async function RootLayout(
         </SessionProvider>
       </body>
     </html>
-    // </Authenticator.Provider>
-    // <SessionProvider session={session}>
-    //   <Component {...pageProps} />
-    // </SessionProvider>
   )
 }
