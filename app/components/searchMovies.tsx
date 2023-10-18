@@ -55,8 +55,8 @@ function SearchMovies() {
                         .map((movieRecord: MovieRecord) =>
                             <li key={movieRecord.year}>Year: {movieRecord.year}, Title: {movieRecord.title},
                                 {/* <button className="py-1 px-2 bg-blue-100">Rent Price: {checkEmpty(movieRecord.rentPrice)}</button> */}
-                                <RentButton price={movieRecord.rentPrice} />
-                                <button className="py-1 px-2 bg-blue-100">Buy Price: {checkEmpty(movieRecord.buyPrice)} </button>
+                                <RentButton title={movieRecord.title} price={movieRecord.rentPrice} />
+                                <button className="py-1 px-2 bg-blue-100">Buy Price: ${checkEmpty(movieRecord.buyPrice)} </button>
                             </li>
                         )
                 }
