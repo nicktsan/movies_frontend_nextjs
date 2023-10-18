@@ -29,7 +29,7 @@ const RegisterPage: React.FC = () => {
         } catch (error) {
             console.error("Error registering user:", error)
         }
-        console.log("User registered:", user);
+        //console.log("User registered:", user);
     };
     return (
         <form onSubmit={handleSubmit}>

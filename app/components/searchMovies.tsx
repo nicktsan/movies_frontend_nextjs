@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import data from '../inputdata/inputdata.json'
+import checkEmpty from '../utils/checkEmpty';
 
 export interface MovieRecord {
     year: number;
@@ -11,47 +12,50 @@ export interface MovieRecord {
 }
 function SearchMovies() {
     const { URL } = data
-    const [movieSearch, setMovieSearch] = useState("");
     const [movie, setMovie] = useState([])
-    //const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
-    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-        setMovieSearch(event.target.value);
+    function HandleSubmit(formData: FormData) {
+        //console.log("formData:")
+        //console.log(formData.get('search'))
+        //extract the input from the formdata with formData.get()
+        try {
+            const url = URL + "titles/" + formData.get('search')
+            //console.log("url:")
+            //console.log(url)
+            axios.get(url)
+                .then(res => {
+                    //console.log("res:")
+                    //console.log(res);
+                    //console.log(res.data);
+                    setMovie(movie => movie = res.data);
+                    //console.log("movie after set:")
+                    //console.log(movie);
+                })
+        } catch (error) {
+            //console.log("error occured")
+            //console.log(error)
+        }
     }
 
-    function HandleSubmit(event: React.FormEvent<HTMLFormElement>) {
-        event.preventDefault();
-        console.log(movieSearch)
-        //if (movieSearch.trim() !== "") {
-        console.log("movieSearch from handleSubmit: " + movieSearch)
-        const url = URL + "titles/" + movieSearch
-        console.log("url:")
-        console.log(url)
-        axios.get(url)
-            .then(res => {
-                console.log("res:")
-                console.log(res);
-                console.log(res.data);
-                setMovie(movie => movie = res.data);
-                console.log("movie after set:")
-                console.log(movie);
-            })
-        //}
-    }
     return (
         <div>
-            <form onSubmit={HandleSubmit}>
+            <form action={HandleSubmit}>
                 <label>
                     Search for movies:
-                    <input type="text" /*moviesearch="movieSearch"*/ onChange={handleChange} />
+                    <input className="border 4 border-black" type="text" name="search" />
                 </label>
-                <button type="submit">Search</button>
+                <button className="py-1 px-2 bg-gray-100" type="submit">Search</button>
             </form>
             <ul>
                 {
+                    //for each element in movie, map them into a list. This should initially display nothing as no
+                    //movie has been searched for.
                     Array.from(movie)
                         .map((movieRecord: MovieRecord) =>
-                            <li key={movieRecord.year/*[movie.year, movie.title]*/}>Year: {movieRecord.year}, Title: {movieRecord.title}, Rent Price: {movieRecord.rentPrice} Buy Price: {movieRecord.buyPrice} </li>
+                            <li key={movieRecord.year}>Year: {movieRecord.year}, Title: {movieRecord.title},
+                                <button className="py-1 px-2 bg-blue-100">Rent Price: {checkEmpty(movieRecord.rentPrice)}</button>
+                                <button className="py-1 px-2 bg-blue-100">Buy Price: {checkEmpty(movieRecord.buyPrice)} </button>
+                            </li>
                         )
                 }
             </ul>
