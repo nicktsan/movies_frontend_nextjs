@@ -4,6 +4,7 @@ import axios from 'axios';
 import data from '../inputdata/inputdata.json'
 import checkEmpty from '../utils/checkEmpty';
 import RentButton from './RentButton'
+import BuyButton from './BuyButton';
 
 export interface MovieRecord {
     year: number;
@@ -54,9 +55,8 @@ function SearchMovies() {
                     Array.from(movie)
                         .map((movieRecord: MovieRecord) =>
                             <li key={movieRecord.year}>Year: {movieRecord.year}, Title: {movieRecord.title},
-                                {/* <button className="py-1 px-2 bg-blue-100">Rent Price: {checkEmpty(movieRecord.rentPrice)}</button> */}
                                 <RentButton title={movieRecord.title} price={movieRecord.rentPrice} />
-                                <button className="py-1 px-2 bg-blue-100">Buy Price: ${checkEmpty(movieRecord.buyPrice)} </button>
+                                <BuyButton title={movieRecord.title} price={movieRecord.buyPrice} />
                             </li>
                         )
                 }
