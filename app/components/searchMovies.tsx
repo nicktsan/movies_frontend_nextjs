@@ -2,9 +2,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import data from '../inputdata/inputdata.json'
-import checkEmpty from '../utils/checkEmpty';
+// import checkEmpty from '../utils/checkEmpty';
 import RentButton from './RentButton'
 import BuyButton from './BuyButton';
+import getMovies from '../utils/getMovies';
 
 export interface MovieRecord {
     year: number;
