@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-import checkEmpty from '../utils/checkEmpty'
+import checkEmpty from '../../utils/checkEmpty'
 import PurchaseConfirmedModal from './PurchaseConfirmedModal'
 import PurchaseMovieModal from './PurchaseMovieModal'
 

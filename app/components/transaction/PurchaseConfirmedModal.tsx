@@ -1,26 +1,27 @@
 import { Dialog, Transition } from '@headlessui/react'
 import React, { Fragment } from 'react'
-import checkEmpty from '../utils/checkEmpty'
+import checkEmpty from '../../utils/checkEmpty'
 
 type PurchaseMoviePropsType = {
     title: string;
     price: number;
     purchaseType: string;
     isActive: boolean;
-    handleClick2: () => void;
     closeModal: () => void;
 }
-export default function PurchaseMovieModal({ title, price, purchaseType, isActive, handleClick2, closeModal }: PurchaseMoviePropsType) {
+export default function PurchaseConfirmedModal({ title, price, purchaseType, isActive, closeModal }: PurchaseMoviePropsType) {
     const fixedPrice = checkEmpty(price)
-    let askPurchase: string = "Do you want to " + purchaseType + " " + title + " at $" + fixedPrice
+    const dueDate = new Date();
+    dueDate.setDate(dueDate.getDate() + 3);
+    let purchaseConfirmedTitle: string = "Payment of $" + fixedPrice + " received for " + title
     if (purchaseType === "rent")
-        askPurchase = askPurchase + " for 72 hours?"
+        purchaseConfirmedTitle = purchaseConfirmedTitle + ". Watchable until " + dueDate
     if (purchaseType === "buy")
-        askPurchase = askPurchase + " forever?"
+        purchaseConfirmedTitle = purchaseConfirmedTitle + " forever."
     return (
         <>
             <Transition appear show={isActive} as={Fragment}>
-                <Dialog as="div" className="relative z-10" id="check" onClose={closeModal}>
+                <Dialog as="div" className="relative z-10" id="confirm" onClose={closeModal}>
                     <Transition.Child
                         as={Fragment}
                         enter="ease-out duration-300"
@@ -49,22 +50,23 @@ export default function PurchaseMovieModal({ title, price, purchaseType, isActiv
                                         as="h3"
                                         className="text-lg font-medium leading-6 text-gray-900"
                                     >
-                                        {askPurchase}
+                                        {purchaseConfirmedTitle}
                                     </Dialog.Title>
                                     <div className="mt-2">
+                                        <p className="text-sm text-gray-500">
+                                            Your payment has been successfully submitted. We’ve sent
+                                            you an email with all of the details of your order.
+                                        </p>
+                                    </div>
+
+                                    <div className="mt-4">
                                         <button
                                             type="button"
                                             id="confirm"
                                             className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                                            onClick={handleClick2}
-                                        >Yes</button>
-                                        <button
-                                            type="button"
-                                            id="check"
-                                            className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                                             onClick={closeModal}
                                         >
-                                            No
+                                            Got it, thanks!
                                         </button>
                                     </div>
                                 </Dialog.Panel>

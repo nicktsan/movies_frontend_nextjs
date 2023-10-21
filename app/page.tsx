@@ -1,5 +1,5 @@
 import { getServerSession } from 'next-auth/next';
-import { SearchMovies } from './components/searchMovies';
+import { SearchMovies } from './components/search/searchMovies';
 
 export default async function Home() {
   //const session = await getServerSession();
