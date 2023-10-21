@@ -31,7 +31,7 @@ const Page = async ({
     return (
         <div>
             {/* Search */}
-            <SearchMovies />
+            <SearchMovies search={searchQuery} />
             {/* Producs */}
             <MovieList movie={movies} />
         </div>

@@ -12,7 +12,7 @@ function SearchMovies({ search }: { search?: string }) {
             <form action={GoToSearchParams}>
                 <label>
                     Search for movies:
-                    <input value={search} className="border 4 border-black" type="text" name="search" />
+                    <input defaultValue={search} className="border 4 border-black" type="text" name="search" />
                 </label>
                 <button className="py-1 px-2 bg-gray-100" type="submit">Search</button>
             </form>
