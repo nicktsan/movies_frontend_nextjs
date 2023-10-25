@@ -2,15 +2,18 @@ import { MovieRecord } from "../components/movies/MovieRecord"
 import { SearchMovies } from "../components/search/searchMovies"
 import MovieList from "../components/search/MovieList"
 import getMovies from "../utils/getMovies"
+import axios from "axios"
 const Page = async ({
     searchParams,
 }: {
     searchParams: { search?: string }
 }) => {
+    // console.log("searchParams.search: ")
+    // console.log(searchParams.search)
     const searchQuery = searchParams.search ?? ""
-
     let movies: MovieRecord[] = []
     const data = await getMovies(searchQuery)
+    //Sample api call from postman: http://localhost:3000/api/getproducts/?title=Blade
 
     // If there is a search query, set movies to search results
     if (searchQuery.length > 0) {
@@ -27,7 +30,8 @@ const Page = async ({
     else {
         movies = []
     }
-
+    // console.log("movies:")
+    // console.log(movies)
     return (
         <div>
             {/* Search */}

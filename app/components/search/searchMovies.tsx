@@ -1,12 +1,18 @@
 'use client'
 import React, { ChangeEvent, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 function SearchMovies({ search }: { search?: string }) {
     const router = useRouter()
     const [movieSearch, setMovieSearch] = useState(search);
+    const pathname = usePathname()
 
     function GoToSearchParams(formData: FormData) {
-        router.push(`/search-params?search=${formData.get('search')}`)
+        // let params = new URLSearchParams(window.location.search)
+        let params = new URLSearchParams(`search=${formData.get('search')}`)
+        // console.log("params:")
+        // console.log(params)
+        // console.log((`/search-params?${params.toString()}`))
+        router.replace((`/search-params?${params.toString()}`))
     }
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
