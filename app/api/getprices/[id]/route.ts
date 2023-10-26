@@ -1,6 +1,6 @@
-import Stripe from "stripe"
+// import Stripe from "stripe"
 import { NextResponse } from "next/server"
-
+import getStripe from "@/app/utils/get-stripe";
 /*
 method for retrieving product and prices through searching
 Step 1: search for product by querying name="title" and active:"true"
@@ -16,9 +16,10 @@ export async function GET(
     { params }: { params: { id: string } }
 ) {
     const id = params.id
-    const stripe = new Stripe(process.env.STRIPE_TEST_SECRET_KEY ?? "blah", {
-        apiVersion: '2023-10-16',
-    });
+    // const stripe = new Stripe(process.env.STRIPE_TEST_SECRET_KEY ?? "blah", {
+    //     apiVersion: '2023-10-16',
+    // });
+    const stripe = getStripe()
     // const prices = await stripe.prices.list({ limit: 4 })
     // const prices = await stripe.prices.search({
     //     query: "active:\'true\' AND nickname:\'Bladerunner | 3 day rental\'"
