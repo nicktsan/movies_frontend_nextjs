@@ -5,7 +5,7 @@ import Image from 'next/image'
 import getMoviePrices from "@/app/utils/getMoviePrices"
 export default async function MovieList({ movie }: { movie: MovieRecord[] }) {
 
-    // let newMovie: MovieRecord[]
+    //for each movie, fetch their price information and add it to their MovieRecord properties
     const newMovie = await Promise.all(movie.map(async (element) => {
         // console.log('movie id:')
         // console.log(element.id)
@@ -17,15 +17,19 @@ export default async function MovieList({ movie }: { movie: MovieRecord[] }) {
         const buyPriceInfo = prices.find((price) => price.nickname.toLowerCase().includes("buy"))
         // console.log("buyPriceInfo")
         // console.log(buyPriceInfo)
-        const buyPrice = buyPriceInfo?.unit_amount / 100
+        const buyPrice = (buyPriceInfo?.unit_amount ?? 0) / 100
         // console.log("buyPrice")
         // console.log(buyPrice)
         const rentPriceInfo = prices.find((price) => price.nickname.toLowerCase().includes("rental"))
         // console.log("rentPriceInfo")
         // console.log(rentPriceInfo)
-        const rentPrice = rentPriceInfo?.unit_amount / 100
+        const rentPrice = (rentPriceInfo?.unit_amount ?? 0) / 100
         // console.log("rentPrice")
         // console.log(rentPrice)
+        element.buyCurrency = buyPriceInfo?.currency ?? ''
+        element.rentCurrency = rentPriceInfo?.currency ?? ''
+        element.buyId = buyPriceInfo?.id ?? ''
+        element.rentId = rentPriceInfo?.id ?? ''
         element.buyPrice = buyPrice
         element.rentPrice = rentPrice
         // console.log("element:")
@@ -49,9 +53,9 @@ export default async function MovieList({ movie }: { movie: MovieRecord[] }) {
                                 width={100}
                                 height={100}
                             />
-                            <li key={movieRecord.id}>{/*Year: {movieRecord.year}, */}Title: {movieRecord.name},
-                                <RentButton title={movieRecord.name} price={movieRecord.rentPrice} />
-                                <BuyButton title={movieRecord.name} price={movieRecord.buyPrice} />
+                            <li key={movieRecord.id}>{movieRecord.name}
+                                <RentButton movieInfo={movieRecord} />
+                                <BuyButton movieInfo={movieRecord} />
                             </li>
                         </div>
                     )

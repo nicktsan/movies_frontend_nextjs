@@ -4,11 +4,15 @@ import checkEmpty from '../../utils/checkEmpty'
 import PurchaseConfirmedModal from './PurchaseConfirmedModal'
 import PurchaseMovieModal from './PurchaseMovieModal'
 import { signIn, useSession } from "next-auth/react"
+import { MovieRecord } from '../movies/MovieRecord'
 
-export default function BuyButton({ title, price }: { title: string, price: number }) {
+export default function BuyButton({ movieInfo }: { movieInfo: MovieRecord }) {
     const [activeIndex, setActiveIndex] = useState(0)
     const { data: session } = useSession();
-    const fixedPrice = checkEmpty(price)
+    const fixedPrice = checkEmpty(movieInfo.buyPrice).toLocaleString('en-CA', {
+        style: 'currency',
+        currency: movieInfo.rentCurrency.toUpperCase()
+    })
 
     function handleClick() {
         if (!session) {
@@ -20,9 +24,9 @@ export default function BuyButton({ title, price }: { title: string, price: numb
 
     return (
         <>
-            <button type="button" id="check" onClick={handleClick} className="py-1 px-2 bg-blue-100">Buy Price: ${fixedPrice}</button>
+            <button type="button" id="check" onClick={handleClick} className="py-1 px-2 bg-blue-100">Buy Price: {fixedPrice}</button>
             <PurchaseMovieModal
-                title={title}
+                title={movieInfo.name}
                 price={fixedPrice}
                 purchaseType="buy"
                 isActive={activeIndex === 1}
@@ -30,7 +34,7 @@ export default function BuyButton({ title, price }: { title: string, price: numb
                 closeModal={() => setActiveIndex(0)}
             />
             <PurchaseConfirmedModal
-                title={title}
+                title={movieInfo.name}
                 price={fixedPrice}
                 purchaseType="buy"
                 isActive={activeIndex === 2}
