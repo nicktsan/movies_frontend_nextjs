@@ -8,9 +8,9 @@ const getStripe = () => {
             apiVersion: '2023-10-16',
         });
         // stripe = loadStripe(process.env.STRIPE_TEST_SECRET_KEY!);
-        console.log("Instantiated a new Stripe object.")
+        // console.log("Instantiated a new Stripe object.")
     } else {
-        console.log("Found an existing Stripe object instance.")
+        // console.log("Found an existing Stripe object instance.")
     }
     return stripe;
 };

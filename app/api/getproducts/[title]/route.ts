@@ -34,7 +34,7 @@ export async function GET(
     // console.log(`name~'${title}'`)
     const productsearch = await stripe.products.search({
         // query: "name~\'Blade\'"
-        query: `name~'${title}' AND active:'true'`
+        query: `name~'${title.trim()}' AND active:'true'`
     })
     // const products = await stripe.products.list()
     // return NextResponse.json(products.data)

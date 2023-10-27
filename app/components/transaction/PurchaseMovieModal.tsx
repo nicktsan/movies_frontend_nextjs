@@ -12,7 +12,7 @@ type PurchaseMoviePropsType = {
 }
 export default function PurchaseMovieModal({ title, price, purchaseType, isActive, handleClick2, closeModal }: PurchaseMoviePropsType) {
     const fixedPrice = checkEmpty(price)
-    let askPurchase: string = "Do you want to " + purchaseType + " " + title + " at $" + fixedPrice
+    let askPurchase: string = "Do you want to " + purchaseType + " " + title + " at " + fixedPrice
     if (purchaseType === "rent")
         askPurchase = askPurchase + " for 72 hours?"
     if (purchaseType === "buy")
