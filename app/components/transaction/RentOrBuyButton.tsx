@@ -6,14 +6,19 @@ import PurchaseMovieModal from './PurchaseMovieModal'
 import { signIn, useSession } from "next-auth/react"
 import { MovieRecord } from '../movies/MovieRecord'
 
-export default function BuyButton({ movieInfo }: { movieInfo: MovieRecord }) {
+export default function RentOrBuyButton({ movieInfo, purchaseType }: { movieInfo: MovieRecord, purchaseType: string }) {
     const [activeIndex, setActiveIndex] = useState(0)
     const { data: session } = useSession();
-    const fixedPrice = checkEmpty(movieInfo.buyPrice).toLocaleString('en-CA', {
+    let price: number = movieInfo.rentPrice
+    let priceCurrency = movieInfo.rentCurrency
+    if (purchaseType.toLowerCase() === 'buy') {
+        price = movieInfo.buyPrice
+        priceCurrency = movieInfo.buyCurrency
+    }
+    const fixedPrice = checkEmpty(price).toLocaleString('en-CA', {
         style: 'currency',
-        currency: movieInfo.rentCurrency.toUpperCase()
+        currency: priceCurrency.toUpperCase()
     })
-
     function handleClick() {
         if (!session) {
             signIn()
@@ -24,11 +29,11 @@ export default function BuyButton({ movieInfo }: { movieInfo: MovieRecord }) {
 
     return (
         <>
-            <button type="button" id="check" onClick={handleClick} className="py-1 px-2 bg-blue-100">Buy Price: {fixedPrice}</button>
+            <button type="button" id="check" onClick={handleClick} className="py-1 px-2 bg-blue-100">{purchaseType.charAt(0).toUpperCase() + purchaseType.toLowerCase().slice(1)} Price: {fixedPrice}</button>
             <PurchaseMovieModal
                 title={movieInfo.name}
                 price={fixedPrice}
-                purchaseType="buy"
+                purchaseType={purchaseType.toLowerCase()}
                 isActive={activeIndex === 1}
                 handleClick2={() => setActiveIndex(2)}
                 closeModal={() => setActiveIndex(0)}
@@ -36,7 +41,7 @@ export default function BuyButton({ movieInfo }: { movieInfo: MovieRecord }) {
             <PurchaseConfirmedModal
                 title={movieInfo.name}
                 price={fixedPrice}
-                purchaseType="buy"
+                purchaseType={purchaseType.toLowerCase()}
                 isActive={activeIndex === 2}
                 closeModal={() => setActiveIndex(0)}
             />

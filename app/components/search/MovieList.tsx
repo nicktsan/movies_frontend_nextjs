@@ -1,6 +1,5 @@
 import { MovieRecord } from "../movies/MovieRecord"
-import RentButton from "../transaction/RentButton"
-import BuyButton from "../transaction/BuyButton"
+import RentOrBuyButton from "../transaction/RentOrBuyButton"
 import Image from 'next/image'
 import getMoviePrices from "@/app/utils/getMoviePrices"
 import concatMovieIds from "@/app/utils/concatMovieIds"
@@ -67,8 +66,8 @@ export default async function MovieList({ movie }: { movie: MovieRecord[] }) {
                                 height={100}
                             />
                             <li key={movieRecord.id}>{movieRecord.name}
-                                <RentButton movieInfo={movieRecord} />
-                                <BuyButton movieInfo={movieRecord} />
+                                <RentOrBuyButton movieInfo={movieRecord} purchaseType="Rent" />
+                                <RentOrBuyButton movieInfo={movieRecord} purchaseType="Buy" />
                             </li>
                         </div>
                     )
