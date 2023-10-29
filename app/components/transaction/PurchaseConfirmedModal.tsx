@@ -14,9 +14,9 @@ export default function PurchaseConfirmedModal({ title, price, purchaseType, isA
     const dueDate = new Date();
     dueDate.setDate(dueDate.getDate() + 3);
     let purchaseConfirmedTitle: string = "Payment of " + fixedPrice + " received for " + title
-    if (purchaseType === "rent")
+    if (purchaseType.toLowerCase() === "rent")
         purchaseConfirmedTitle = purchaseConfirmedTitle + ". Watchable until " + dueDate
-    if (purchaseType === "buy")
+    if (purchaseType.toLowerCase() === "buy")
         purchaseConfirmedTitle = purchaseConfirmedTitle + " forever."
     return (
         <>

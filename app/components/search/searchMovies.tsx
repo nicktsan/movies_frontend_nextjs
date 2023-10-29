@@ -1,11 +1,12 @@
 'use client'
 import React, { ChangeEvent, useState } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter/*, usePathname*/ } from 'next/navigation';
 function SearchMovies({ search }: { search?: string }) {
     const router = useRouter()
     const [movieSearch, setMovieSearch] = useState(search);
-    const pathname = usePathname()
+    // const pathname = usePathname()
 
+    //redirect user to search page
     function GoToSearchParams(formData: FormData) {
         // let params = new URLSearchParams(window.location.search)
         let params = new URLSearchParams(`search=${formData.get('search')}`)

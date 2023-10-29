@@ -5,7 +5,7 @@ export default async function getMoviePrices(searchParams: string) {
     let result: MovieRecord[] = []
     try {
         // const url = process.env.AWS_DYNAMO_DB_MOVIES_URL + "titles/" + searchParams
-        const url = `${process.env.TESTING_URL}/api/getprices/${searchParams}`
+        const url = `${process.env.ENV_URL}/api/getprices/${searchParams}`
         // console.log('getmovies url:')
         // console.log(url)
         await axios.get(url)

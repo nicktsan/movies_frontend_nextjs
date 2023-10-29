@@ -1,4 +1,3 @@
-// import Stripe from "stripe"
 import { NextResponse } from "next/server"
 import getStripe from "@/app/utils/get-stripe";
 /*
@@ -16,26 +15,12 @@ export async function GET(
     { params }: { params: { query: string } }
 ) {
     const query = params.query
-    // const stripe = new Stripe(process.env.STRIPE_TEST_SECRET_KEY ?? "blah", {
-    //     apiVersion: '2023-10-16',
-    // });
     const stripe = getStripe()
-    // const prices = await stripe.prices.list({ limit: 4 })
-    // const prices = await stripe.prices.search({
-    //     query: "active:\'true\' AND nickname:\'Bladerunner | 3 day rental\'"
-    // })
     //: for exact match operator (ex: "name:\'Blade Runner (1982)\'")
     //~ for substring match (ex:"name~\'Blade\'")
     //Sample api call from postman: http://localhost:3000/api/getprices/prod_OsjwteD0JG9UVI
-    // console.log(`product:'${id}' AND active:"true"`)
     const pricesearch = await stripe.prices.search({
-        // query: `product:'${id.trim()}' AND active:"true"`
         query: query
-        // query: `product:'prod_OsHXCtgv3F9phY' OR product:'prod_OsHkQvle2aSszQ'`
     })
-    // const products = await stripe.products.list()
-    // return NextResponse.json(products.data)
     return NextResponse.json(pricesearch.data.reverse())
-    // return NextResponse.json(products.data.reverse())
-    // return NextResponse.json(prices.data.reverse())
 }
