@@ -13,6 +13,8 @@ export async function POST(request: Request) {
     // console.log(prevWindow)
     // console.log("priceId")
     // console.log(priceId)
+    // console.log("data.search")
+    // console.log(data.search)
     try {
         // Create Checkout Sessions from body params.
         const session = await stripe.checkout.sessions.create({
@@ -24,10 +26,9 @@ export async function POST(request: Request) {
                 },
             ],
             mode: 'payment',
-            // success_url: `${process.env.ENV_URL}`,///?success=true`,
-            // cancel_url: `${process.env.ENV_URL}`,///?canceled=true`,
-            success_url: `${prevWindow}&showDialog=y`,///?success=true`,
-            cancel_url: `${prevWindow}`,///?canceled=true`,
+
+            success_url: `${prevWindow}&success=true`,
+            cancel_url: `${prevWindow}`
             // automatic_tax: { enabled: true },
         });
         // request.redirect(303, session.url);
