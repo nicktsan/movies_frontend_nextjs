@@ -2,7 +2,8 @@ import { MovieRecord } from "../components/movies/MovieRecord"
 import { SearchMovies } from "../components/search/searchMovies"
 import MovieList from "../components/search/MovieList"
 import getMovies from "../utils/getMovies"
-import axios from "axios"
+import PurchaseConfirmedSimpleModal from "../components/transaction/PurchaseConfirmedSimpleModal"
+
 const Page = async ({
     searchParams,
 }: {
@@ -38,6 +39,7 @@ const Page = async ({
             <SearchMovies search={searchQuery} />
             {/* Producs */}
             <MovieList movie={movies} />
+            <PurchaseConfirmedSimpleModal />
         </div>
     )
 }

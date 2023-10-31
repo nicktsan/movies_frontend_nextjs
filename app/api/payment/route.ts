@@ -8,6 +8,9 @@ export async function POST(request: Request) {
     // console.log("data")
     // console.log(data)
     let priceId = data.priceId
+    let prevWindow = data.prevWindow
+    // console.log("prevWindow:")
+    // console.log(prevWindow)
     // console.log("priceId")
     // console.log(priceId)
     try {
@@ -21,8 +24,10 @@ export async function POST(request: Request) {
                 },
             ],
             mode: 'payment',
-            success_url: `${process.env.ENV_URL}`,///?success=true`,
-            cancel_url: `${process.env.ENV_URL}`,///?canceled=true`,
+            // success_url: `${process.env.ENV_URL}`,///?success=true`,
+            // cancel_url: `${process.env.ENV_URL}`,///?canceled=true`,
+            success_url: `${prevWindow}&showDialog=y`,///?success=true`,
+            cancel_url: `${prevWindow}`,///?canceled=true`,
             // automatic_tax: { enabled: true },
         });
         // request.redirect(303, session.url);
@@ -30,7 +35,13 @@ export async function POST(request: Request) {
     } catch (err: any) {
         // request.status(err.statusCode || 500).json(err.message);
         console.log("error occured in api/payment")
-        console.log(err)
-        return NextResponse.json(err)
+        // console.log(err)
+
+        // return NextResponse.json(err)
+        console.error(err);
+        return NextResponse.json(
+            { message: "something went wrong", ok: false },
+            { status: 500 }
+        );
     }
 }
