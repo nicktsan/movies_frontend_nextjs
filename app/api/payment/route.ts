@@ -28,7 +28,7 @@ export async function POST(request: Request) {
             mode: 'payment',
 
             success_url: `${prevWindow}&success=true`,
-            cancel_url: `${prevWindow}`
+            cancel_url: `${prevWindow}&success=false`
             // automatic_tax: { enabled: true },
         });
         // request.redirect(303, session.url);
@@ -36,13 +36,11 @@ export async function POST(request: Request) {
     } catch (err: any) {
         // request.status(err.statusCode || 500).json(err.message);
         console.log("error occured in api/payment")
-        // console.log(err)
-
-        // return NextResponse.json(err)
         console.error(err);
-        return NextResponse.json(
-            { message: "something went wrong", ok: false },
-            { status: 500 }
-        );
+        return NextResponse.json(`${prevWindow}&success=false`)
+        // return NextResponse.json(
+        //     { message: "something went wrong", ok: false },
+        //     { status: 500 },
+        // );
     }
 }

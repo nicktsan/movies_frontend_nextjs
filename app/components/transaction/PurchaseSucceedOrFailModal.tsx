@@ -2,13 +2,13 @@
 import { useSearchParams } from 'next/navigation'
 import { useRef, useEffect } from 'react'
 
-export default function PurchaseConfirmedSimpleModal() {
+export default function PurchaseSucceedOrFailModal() {
     const searchParams = useSearchParams()
     const dialogRef = useRef<null | HTMLDialogElement>(null)
     let success = searchParams.get('success')
 
     useEffect(() => {
-        if (success === 'true') {
+        if (success === 'true' || success === 'false') {
             dialogRef.current?.showModal()
         } else {
             dialogRef.current?.close()
@@ -18,8 +18,13 @@ export default function PurchaseConfirmedSimpleModal() {
     const closeDialog = () => {
         dialogRef.current?.close()
     }
+    let dialogText: string = success === 'true' ? "Your payment has been successfully submitted. We’ve sent " +
+        "you an email with all of the details of your order." :
+        "Your payment was not successfully submitted. We've sent you and email with all of the details of the failure."
 
-    const dialog: JSX.Element | null = success === 'true'
+
+
+    let dialog: JSX.Element | null = success === 'true' || success === 'false'
         ? (
             <dialog ref={dialogRef} className="fixed top-50 left-50 -translate-x-50 -translate-y-50 z-10  rounded-xl backdrop:bg-gray-800/50">
                 <div className="w-[500px] max-w-fullbg-gray-200 flex flex-col">
@@ -31,8 +36,7 @@ export default function PurchaseConfirmedSimpleModal() {
                         >x</button>
                     </div>
                     <div className="px-5 pb-6">
-                        Your payment has been successfully submitted. We’ve sent
-                        you an email with all of the details of your order.
+                        {dialogText}
                         <div className="flex flex-row justify-end mt-2">
                             <button
                                 onClick={closeDialog}
@@ -45,5 +49,7 @@ export default function PurchaseConfirmedSimpleModal() {
                 </div>
             </dialog>
         ) : null
+
+
     return dialog
 }
