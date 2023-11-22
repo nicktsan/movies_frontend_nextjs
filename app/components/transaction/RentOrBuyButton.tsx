@@ -16,10 +16,12 @@ export default function RentOrBuyButton({ movieInfo, purchaseType }: { movieInfo
     let price: number = movieInfo.rentPrice
     let priceCurrency: string = movieInfo.rentCurrency
     let priceID: string = movieInfo.rentId
+    let purchaseDescription: string = movieInfo.rentDescription
     if (purchaseType.toLowerCase() === 'buy') {
         price = movieInfo.buyPrice
         priceCurrency = movieInfo.buyCurrency
         priceID = movieInfo.buyId
+        purchaseDescription = 'Buy'
     }
     const fixedPrice = checkEmpty(price).toLocaleString('en-CA', {
         style: 'currency',
@@ -32,13 +34,13 @@ export default function RentOrBuyButton({ movieInfo, purchaseType }: { movieInfo
             signIn()
         } else {
             // setActiveIndex(1)
-            checkout(priceID)
+            checkout(priceID, session?.user?.email ?? "blah")
         }
     }
 
     return (
         <>
-            <button type="button" id="check" onClick={handleClick} className="py-1 px-2 bg-blue-100">{purchaseType.charAt(0).toUpperCase() + purchaseType.toLowerCase().slice(1)} Price: {fixedPrice}</button>
+            <button type="button" id="check" onClick={handleClick} className="py-1 px-2 bg-blue-100">{purchaseDescription} Price: {fixedPrice}</button>
             {/* <PurchaseMovieModal
                 title={movieInfo.name}
                 price={fixedPrice}

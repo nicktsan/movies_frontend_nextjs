@@ -1,13 +1,16 @@
 import axios from "axios";
+import getCustomer from "./getCustomer";
 
-export default async function checkout(priceID: string) {
-    const apiUrl = `/api/payment`
+export default async function checkout(priceID: string, email: string) {
+    const paymentApiUrl = `/api/payment`
+    const searchCustomerUrl = `/api/searchcustomers`
     // console.log("priceID")
     // console.log(priceID)
     let currentURL = new URL(window.location.href).toString()
     currentURL = currentURL.split("&")[0]
     //consolidate data into a json
-    const { data } = await axios.post(apiUrl,
+    // const customerData = await getCustomer(email)
+    const { data } = await axios.post(paymentApiUrl,
         {
             priceId: priceID,
             prevWindow: currentURL,

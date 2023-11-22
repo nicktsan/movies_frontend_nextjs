@@ -10,6 +10,6 @@ export interface MovieRecord {
     buyPrice: number;
     buyId: string
     buyCurrency: string
-    nickname: string;
+    rentDescription: string;
     [key: string]: any;
 }

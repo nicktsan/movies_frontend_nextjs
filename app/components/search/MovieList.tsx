@@ -42,6 +42,7 @@ export default async function MovieList({ movie }: { movie: MovieRecord[] }) {
         element.rentCurrency = rentPriceInfo?.currency ?? ''
         element.buyId = buyPriceInfo?.id ?? ''
         element.rentId = rentPriceInfo?.id ?? ''
+        element.rentDescription = rentPriceInfo?.nickname ?? ''
         element.buyPrice = buyPrice
         element.rentPrice = rentPrice
         //     // console.log("element:")
