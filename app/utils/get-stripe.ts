@@ -1,3 +1,4 @@
+'use server'
 import Stripe from "stripe"
 let stripe: Stripe | null;
 const getStripe = () => {

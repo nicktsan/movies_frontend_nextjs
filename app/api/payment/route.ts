@@ -9,6 +9,7 @@ export async function POST(request: Request) {
     // console.log(data)
     let priceId = data.priceId
     let prevWindow = data.prevWindow
+    let customerId = data.customerId
     // console.log("prevWindow:")
     // console.log(prevWindow)
     // console.log("priceId")
@@ -26,6 +27,7 @@ export async function POST(request: Request) {
                 },
             ],
             mode: 'payment',
+            customer: customerId,
 
             success_url: `${prevWindow}&success=true`,
             cancel_url: `${prevWindow}&success=false`

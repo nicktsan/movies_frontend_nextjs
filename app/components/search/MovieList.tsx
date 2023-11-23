@@ -1,3 +1,4 @@
+'use server'
 import { MovieRecord } from "../movies/MovieRecord"
 import RentOrBuyButton from "../transaction/RentOrBuyButton"
 import Image from 'next/image'
