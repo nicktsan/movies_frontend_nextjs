@@ -1,3 +1,5 @@
+This project should be deployed along side https://github.com/nicktsan/stripe-webhook, https://github.com/nicktsan/movie-ownership-crud and https://github.com/nicktsan/movie_authentication to be effective.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
