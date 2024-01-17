@@ -34,16 +34,16 @@ export default function NavMenu() {
             <ul>
                 <Link href="/">
                     <li className={pathname === "/" ? ACTIVE_ROUTE : INACTIVE_ROUTE}>
-                        Home
+                        Search Movies
                     </li>
                 </Link>
-                <Link href="/dashboard">
+                <Link href="/mymovies">
                     <li
                         className={
-                            pathname === "/dashboard" ? ACTIVE_ROUTE : INACTIVE_ROUTE
+                            pathname === "/mymovies" ? ACTIVE_ROUTE : INACTIVE_ROUTE
                         }
                     >
-                        Dashboard
+                        My Movies
                     </li>
                 </Link>
                 <Link href="/serverAction">
