@@ -11,7 +11,7 @@ function AuthButton() {
         // //console.log(session)
         return (
             <>
-                Signed in as {session?.user?.email} <br />
+                Signed in as {session?.user?.email} with {session?.user?.role} role <br />
                 <button onClick={() => signOut()}>Sign out</button>
             </>
         );
