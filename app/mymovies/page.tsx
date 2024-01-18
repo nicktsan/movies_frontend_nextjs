@@ -12,6 +12,7 @@ export default async function MyMovies() {
     if (!session || !session.user) {
         redirect("/api/auth/signin");
     }
+    // console.log("session: ", session)
     const movies = await getAllMovieOwnership()
     // console.log("movieOwnership:")
     // console.log(movieOwnership)
