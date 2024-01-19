@@ -25,6 +25,24 @@ function AuthButton() {
     );
 }
 
+function UploadMovie() {
+    const { data: session } = useSession();
+    const pathname = usePathname();
+    //if there is a session, there is an option to sign out of the current session
+    if (session && session?.user?.role?.find((element) => element === 'admin')) {
+        // //console.log(session)
+        return (
+            <Link href="/uploadMovies">
+                <li className={pathname === "/uploadMovies" ? ACTIVE_ROUTE : INACTIVE_ROUTE}>
+                    Upload Movies
+                </li>
+            </Link>
+        );
+    }
+    //otherwise, there is no session, and there is an option to sign in to a user.
+    return null
+}
+
 export default function NavMenu() {
     const pathname = usePathname();
     return (
@@ -46,33 +64,7 @@ export default function NavMenu() {
                         My Movies
                     </li>
                 </Link>
-                <Link href="/serverAction">
-                    <li
-                        className={
-                            pathname === "/serverAction" ? ACTIVE_ROUTE : INACTIVE_ROUTE
-                        }
-                    >
-                        Server Action
-                    </li>
-                </Link>
-                <Link href="/apiFromClient">
-                    <li
-                        className={
-                            pathname === "/apiFromClient" ? ACTIVE_ROUTE : INACTIVE_ROUTE
-                        }
-                    >
-                        API From Client
-                    </li>
-                </Link>
-                <Link href="/apiFromServer">
-                    <li
-                        className={
-                            pathname === "/apiFromServer" ? ACTIVE_ROUTE : INACTIVE_ROUTE
-                        }
-                    >
-                        API From Server
-                    </li>
-                </Link>
+                <UploadMovie />
             </ul>
         </div>
     );
