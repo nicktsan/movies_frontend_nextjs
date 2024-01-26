@@ -1,4 +1,4 @@
-'use server'
+"use server"
 import { MovieRecord } from "../components/movies/MovieRecord"
 import { SearchMovies } from "../components/search/searchMovies"
 import MovieList from "../components/search/MovieList"

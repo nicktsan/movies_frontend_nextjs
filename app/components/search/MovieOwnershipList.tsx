@@ -1,4 +1,4 @@
-'use server'
+"use server"
 import { MovieOwnership } from "../movies/MovieOwnership"
 import Image from 'next/image'
 import WatchButton from "../watch/WatchButton"
