@@ -7,8 +7,8 @@ export const options: NextAuthOptions = {
     providers: [
         CognitoProvider({
             profile(profile: CognitoProfile) {
-                console.log("profile in CognitoProvider")
-                console.log(profile)
+                // console.log("profile in CognitoProvider")
+                // console.log(profile)
                 return {
                     ...profile,
                     role: profile["cognito:groups"] ?? ["user"],
@@ -27,8 +27,8 @@ export const options: NextAuthOptions = {
         // Ref: https://authjs.dev/guides/basics/role-based-access-control#persisting-the-role
         async jwt({ token, user, profile }) {
             if (user) {
-                console.log("profile in jwt")
-                console.log(profile)
+                // console.log("profile in jwt")
+                // console.log(profile)
                 token.role = profile?.["cognito:groups"] ?? ["user"]
             }
 
@@ -45,8 +45,8 @@ export const options: NextAuthOptions = {
         // If you want to use the role in client components
         async session({ session, token }) {
             if (session?.user) {
-                console.log("token in session")
-                console.log(token)
+                // console.log("token in session")
+                // console.log(token)
                 session.user.role = token.role ?? ["user"]
             }
             return session

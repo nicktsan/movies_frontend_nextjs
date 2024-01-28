@@ -1,4 +1,4 @@
-'use server'
+"use server"
 import axios from 'axios'
 import { MovieOwnership } from '../components/movies/MovieOwnership'
 import { getServerSession } from "next-auth";

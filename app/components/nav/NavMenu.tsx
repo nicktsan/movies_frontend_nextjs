@@ -32,8 +32,8 @@ function UploadMovie() {
     if (session && session?.user?.role?.find((element) => element === 'admin')) {
         // //console.log(session)
         return (
-            <Link href="/uploadMovies">
-                <li className={pathname === "/uploadMovies" ? ACTIVE_ROUTE : INACTIVE_ROUTE}>
+            <Link href="/UploadMovies">
+                <li className={pathname === "/UploadMovies" ? ACTIVE_ROUTE : INACTIVE_ROUTE}>
                     Upload Movies
                 </li>
             </Link>
