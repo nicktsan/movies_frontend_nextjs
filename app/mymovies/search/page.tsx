@@ -20,7 +20,6 @@ export default async function MyMoviesSearch({
     if (!session || !session.user) {
         redirect("/api/auth/signin");
     }
-    // todo
     const searchQuery = searchParams.search ?? ""
     let movies: MovieOwnership[] = []
     const data = await getSpecificMovieOwnership(searchQuery)
