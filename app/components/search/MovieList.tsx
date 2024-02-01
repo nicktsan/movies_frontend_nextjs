@@ -54,7 +54,7 @@ export default async function MovieList({ movie }: { movie: MovieRecord[] }) {
     // console.log(movie)
 
     return (
-        <ul>
+        <ul className="ml-6">
             {
                 //for each element in movie, map them into a list. This should initially display nothing as no
                 //movie has been searched for.

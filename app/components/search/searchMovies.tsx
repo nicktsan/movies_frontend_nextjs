@@ -21,7 +21,7 @@ function SearchMovies({ search }: { search?: string }) {
     }
 
     return (
-        <div>
+        <div className="flex justify-center items-center">
             <form action={GoToSearchParams}>
                 <label>
                     Search for movies:

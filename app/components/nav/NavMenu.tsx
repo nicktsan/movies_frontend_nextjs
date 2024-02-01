@@ -3,17 +3,21 @@ import Link from "next/link"
 import { signIn, signOut, useSession } from "next-auth/react"
 import { usePathname } from "next/navigation"
 const ACTIVE_ROUTE = "py-1 px-2 text-gray-300 bg-gray-700"
-const INACTIVE_ROUTE = "py-1 px-2 text-gray-500 hover:text-gray-300 hover:bg-gray-700"
+const INACTIVE_ROUTE = "py-1 px-2 hover:text-gray-300 hover:bg-gray-700"
+const DEFAULT_TEXT_SETTINGS = "py-1 px-2"
 function AuthButton() {
     const { data: session } = useSession();
     //if there is a session, there is an option to sign out of the current session
     if (session) {
         // //console.log(session)
         return (
-            <>
-                Signed in as {session?.user?.email} with {session?.user?.role} role <br />
+            <div className={DEFAULT_TEXT_SETTINGS}>
+                <p>Signed in as</p>
+                <p> {session?.user?.email} </p>
+                <p>with {session?.user?.role} role </p>
+                <br />
                 <button onClick={() => signOut()}>Sign out</button>
-            </>
+            </div>
         );
     }
     //otherwise, there is no session, and there is an option to sign in to a user.
@@ -46,7 +50,7 @@ function UploadMovie() {
 export default function NavMenu() {
     const pathname = usePathname();
     return (
-        <div>
+        <div className="whitespace-normal absolute inset-y-0 left-0 ...">
             <AuthButton />
             <hr className="my-4" />
             <ul>

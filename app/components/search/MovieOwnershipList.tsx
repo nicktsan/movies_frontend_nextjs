@@ -4,7 +4,7 @@ import Image from 'next/image'
 import WatchButton from "../watch/WatchButton"
 export default async function MovieOwnershipList({ movieOwnership }: { movieOwnership: MovieOwnership[] }) {
     return (
-        <ul>
+        <ul className="ml-6">
             {
                 //for each element in movieOwnership, map them into a list. This should initially display nothing as no
                 //movieOwnership has been searched for.

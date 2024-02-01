@@ -27,7 +27,7 @@ export default async function RootLayout(
     <html lang="en">
       <body className={inter.className}>
         <SessionProvider session={session}>
-          <main className='mx-auto max-w-5xl text-2xl flex gap-2'>
+          <main className='mx-auto max-w-5xl text-lg'>{/*flex gap-2*/}
             <NavMenu />
             {children}
           </main>
