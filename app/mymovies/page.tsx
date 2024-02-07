@@ -13,8 +13,6 @@ export default async function MyMovies() {
         // redirect("/api/auth/signin");
         return (
             <div>
-                <h1>My Movies Page</h1>
-                <br />
                 Please sign in to access this content.
             </div>
         )
@@ -27,11 +25,8 @@ export default async function MyMovies() {
     //by default we want the movieownershiplist to display all movies the user owns
 
     return (
-        <div>
+        <div className="col-span-2">
             <SearchMyMovies />
-            <h1>My Movies Page</h1>
-            <br />
-            You will only see this if you are authenticated.
             <MovieOwnershipList movieOwnership={movies} />
         </div>
     )

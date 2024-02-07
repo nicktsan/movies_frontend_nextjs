@@ -6,7 +6,7 @@ export default function Page({
     params: { id: string }
 }) {
 
-    console.log("param: ", params.id)
+    // console.log("param: ", params.id)
     return (
         <div>
             <MuxPlayer streamType="on-demand" playbackId={params.id} accentColor="#ac39f2" />

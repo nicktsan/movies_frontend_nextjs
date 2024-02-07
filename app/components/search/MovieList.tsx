@@ -54,26 +54,29 @@ export default async function MovieList({ movie }: { movie: MovieRecord[] }) {
     // console.log(movie)
 
     return (
-        <ul className="ml-6">
-            {
-                //for each element in movie, map them into a list. This should initially display nothing as no
-                //movie has been searched for.
-                Array.from(movie)
-                    .map((movieRecord: MovieRecord) =>
-                        <div>
-                            <Image
-                                alt={movieRecord.name}
-                                src={movieRecord.images[0]}
-                                width={100}
-                                height={100}
-                            />
-                            <li key={movieRecord.id}>{movieRecord.name}
-                                <RentOrBuyButton movieInfo={movieRecord} purchaseType="Rent" />
-                                <RentOrBuyButton movieInfo={movieRecord} purchaseType="Buy" />
-                            </li>
-                        </div>
-                    )
-            }
-        </ul>
+        <div>
+            <ul className="grid gap-y-4">
+                {
+                    //for each element in movie, map them into a list. This should initially display nothing as no
+                    //movie has been searched for.
+                    Array.from(movie)
+                        .map((movieRecord: MovieRecord) =>
+                            <div className="flex justify-start gap-2">
+                                <Image
+                                    alt={movieRecord.name}
+                                    src={movieRecord.images[0]}
+                                    width={100}
+                                    height={100}
+                                />
+                                <li className="grid grid-rows-3 gap-4" key={movieRecord.id}>
+                                    {movieRecord.name}
+                                    <RentOrBuyButton movieInfo={movieRecord} purchaseType="Rent" />
+                                    <RentOrBuyButton movieInfo={movieRecord} purchaseType="Buy" />
+                                </li>
+                            </div>
+                        )
+                }
+            </ul>
+        </div>
     )
 }

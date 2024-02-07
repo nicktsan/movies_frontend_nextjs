@@ -16,7 +16,7 @@ function AuthButton() {
                 <p> {session?.user?.email} </p>
                 <p>with {session?.user?.role} role </p>
                 <br />
-                <button onClick={() => signOut()}>Sign out</button>
+                <button className={INACTIVE_ROUTE} onClick={() => signOut()}>Sign out</button>
             </div>
         );
     }
@@ -50,7 +50,7 @@ function UploadMovie() {
 export default function NavMenu() {
     const pathname = usePathname();
     return (
-        <div className="whitespace-normal absolute inset-y-0 left-0 ...">
+        <div className="w-1/3 whitespace-nowrap relative inset-y-0 left-0 ...">
             <AuthButton />
             <hr className="my-4" />
             <ul>

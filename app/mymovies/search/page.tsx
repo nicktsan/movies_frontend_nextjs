@@ -42,11 +42,8 @@ export default async function MyMoviesSearch({
     }
     //otherwise, user can access the mymovies page
     return (
-        <div>
+        <div className="col-span-2">
             <SearchMyMovies search={searchQuery} />
-            <h1>My Movies Page {searchParams.search} </h1>
-            <br />
-            You will only see this if you are authenticated.
             <MovieOwnershipList movieOwnership={movies} />
         </div>
     )
