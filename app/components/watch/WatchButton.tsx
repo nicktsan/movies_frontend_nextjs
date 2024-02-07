@@ -22,7 +22,7 @@ export default function WatchButton({ movieOwnership }: { movieOwnership: MovieO
                 console.log("movieOwnership.title: ", movieOwnership.title)
                 const muxVideoData = await getMuxVideo(movieOwnership.title)
                 router.replace((`/watch/${muxVideoData[0].playbackid}`))
-            }} className="py-1 px-2 bg-blue-100">Watch</button>
+            }} className="py-1 px-2 bg-blue-100 hover:text-gray-300 hover:bg-gray-700">Watch</button>
         </>
     )
 }

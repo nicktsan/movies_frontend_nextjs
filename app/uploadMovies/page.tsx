@@ -1,20 +1,19 @@
-"use server"
+"use client"
 
-import { getServerSession } from "next-auth";
-import MuxUploaderContainer from "../components/Mux/MuxUploaderContainer";
+import { useSession } from "next-auth/react";
+import MuxUploaderContainer from "../components/mux/MuxUploaderContainer";
 
-//a protected can be navigated to with localhost:3000/mymovies if the user is signed in.
-export default async function UploadMovies() {
-    const session = await getServerSession();
-
-    //if user is not signed in, redirect to sign in page
+export default function UploadMovies() {
+    const { data: session } = useSession();
+    console.log(session)
+    //Currently only able to access session user role from client side. If I find a way to access it server side, 
+    // I will implement that method.
     if (!session || !session.user.role?.find((element) => element === 'admin')) {
         return (
             <div>
-                <h1>My Movies Page</h1>
+                <h1>Upload Movies Page</h1>
                 <br />
-                You will only see this if you are an admin.
-                <MuxUploaderContainer />
+                Please be an admin to see this content
             </div>
         )
     }
@@ -22,8 +21,8 @@ export default async function UploadMovies() {
     return (
         <div>
             <h1>Upload Movies Page</h1>
-            <br />
-            Please be an admin to see this content
+            <MuxUploaderContainer />
         </div>
     )
+
 }

@@ -48,7 +48,7 @@ export default function PurchaseConfirmedModal({ title, price, purchaseType, isA
                                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                                     <Dialog.Title
                                         as="h3"
-                                        className="text-lg font-medium leading-6 text-gray-900"
+                                        className="font-medium leading-6 text-gray-900"
                                     >
                                         {purchaseConfirmedTitle}
                                     </Dialog.Title>

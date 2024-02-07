@@ -22,12 +22,12 @@ function SearchMyMovies({ search }: { search?: string }) {
 
     return (
         <div>
-            <form action={GoToSearchParams}>
+            <form className="flex justify-start items-baseline gap-2" action={GoToSearchParams}>
                 <label>
                     Search for my movies:
                     <input onChange={handleChange} value={movieSearch} className="border 4 border-black" type="text" name="search" />
                 </label>
-                <button className="py-1 px-2 bg-gray-100" type="submit">Search</button>
+                <button className="py-1 px-2 bg-gray-100 hover:text-gray-300 hover:bg-gray-700" type="submit">Search</button>
             </form>
         </div>
     )

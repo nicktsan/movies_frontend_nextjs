@@ -40,7 +40,7 @@ export default function RentOrBuyButton({ movieInfo, purchaseType }: { movieInfo
 
     return (
         <>
-            <button type="button" id="check" onClick={handleClick} className="py-1 px-2 bg-blue-100">{purchaseDescription} Price: {fixedPrice}</button>
+            <button type="button" id="check" onClick={handleClick} className="py-1 px-2 bg-blue-100 hover:text-gray-300 hover:bg-gray-700">{purchaseDescription} Price: {fixedPrice}</button>
             {/* <PurchaseMovieModal
                 title={movieInfo.name}
                 price={fixedPrice}
