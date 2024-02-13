@@ -5,7 +5,7 @@ import MuxUploaderContainer from "../components/mux/MuxUploaderContainer";
 
 export default function UploadMovies() {
     const { data: session } = useSession();
-    console.log(session)
+    // console.log(session)
     //Currently only able to access session user role from client side. If I find a way to access it server side, 
     // I will implement that method.
     if (!session || !session.user.role?.find((element) => element === 'admin')) {

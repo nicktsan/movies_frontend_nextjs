@@ -61,7 +61,7 @@ export default async function MovieList({ movie }: { movie: MovieRecord[] }) {
                     //movie has been searched for.
                     Array.from(movie)
                         .map((movieRecord: MovieRecord) =>
-                            <div className="flex justify-start gap-2">
+                            <div className="flex justify-start gap-2" key={movieRecord.id}>
                                 <Image
                                     alt={movieRecord.name}
                                     src={movieRecord.images[0]}

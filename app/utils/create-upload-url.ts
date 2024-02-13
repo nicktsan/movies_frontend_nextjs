@@ -10,6 +10,6 @@ export default async function CreateUploadUrl(formData: FormData): Promise<strin
             passthrough: title,
         },
     });
-    console.log("directUpload: ", directUpload)
+    // console.log("directUpload: ", directUpload)
     return directUpload.url
 }
