@@ -21,6 +21,7 @@
     "next-auth": "^4.23.2",
     "react": "^18",
     "react-dom": "^18",
+    "sharp": "^0.33.2",
     "stripe": "^14.1.0"
   },
   "devDependencies": {

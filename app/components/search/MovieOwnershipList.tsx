@@ -10,7 +10,7 @@ export default async function MovieOwnershipList({ movieOwnership }: { movieOwne
                 //movieOwnership has been searched for.
                 Array.from(movieOwnership)
                     .map((movieOwnershipRecord: MovieOwnership) =>
-                        <div className="flex justify-start gap-2">
+                        <div className="flex justify-start gap-2" key={movieOwnershipRecord.title}>
                             <Image
                                 alt={movieOwnershipRecord.title}
                                 src={movieOwnershipRecord.image}
