@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movieapp-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: movieapp
+  template:
+    metadata:
+      labels:
+        app: movieapp
+    spec:
+      containers:
+        - name: movieapp-container
+          image: {aws account id}.dkr.ecr.us-east-1.amazonaws.com/frontend/movieapp:v1.1
+          ports:
+            - containerPort: 3000
