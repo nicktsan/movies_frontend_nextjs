@@ -27,6 +27,10 @@ yarn-error.log*
 # local env files
 .env*.local
 .env.local
+.env
+
+#copy of .env
+moviesitenextjsenvcopy.txt
 
 # vercel
 .vercel
@@ -37,3 +41,4 @@ next-env.d.ts
 
 # input data from json
 */inputdata
+
