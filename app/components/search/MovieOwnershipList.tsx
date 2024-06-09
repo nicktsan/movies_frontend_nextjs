@@ -3,6 +3,9 @@ import { MovieOwnership } from "../movies/MovieOwnership"
 import Image from 'next/image'
 import WatchButton from "../watch/WatchButton"
 export default async function MovieOwnershipList({ movieOwnership }: { movieOwnership: MovieOwnership[] }) {
+    if (!movieOwnership){
+        movieOwnership = []
+    }
     return (
         <ul className="grid gap-y-4">
             {
