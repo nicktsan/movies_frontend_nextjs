@@ -23,7 +23,7 @@ const Page = async ({
         if (data) {
             movies = data
         }
-        // If there is no result, set movies to empty array
+    // If there is no result, set movies to empty array
         else {
             movies = []
         }
